@@ -1,0 +1,9 @@
+
+# Streamlit folder
+.streamlit
+
+# Python environment
+/sp-dashboard
+
+all_stocks.txt
+stocks.txt
