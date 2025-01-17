@@ -5,5 +5,9 @@
 # Python environment
 /sp-dashboard
 
+# files
 all_stocks.txt
 stocks.txt
+
+# stock line
+stocks.py
