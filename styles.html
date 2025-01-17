@@ -1,0 +1,50 @@
+
+<style>
+
+    h3 span {
+        font-family: "Open Sans", sans-serif;
+        font-size: 1.1em;
+        font-weight: 700;
+        color: #174C4F;
+    }
+
+    div[data-testid="stVerticalBlockBorderWrapper"]:has(.stHtml > .watchlist_card) {
+        padding-bottom: 0em;
+    }
+
+    div[data-testid="stVerticalBlock"]:has(> div > .stHtml > .watchlist_symbol_name) {
+        & p {
+            color: #174C4F;
+            font-family: "Open Sans", sans-serif;
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+    }
+
+    div[data-testid="stVerticalBlock"]:has(> div > .stHtml > .watchlist_ticker) {
+        text-align: right;
+
+        & p {
+            font-size: 0.8em;
+            margin-bottom: 0;
+        }
+    }
+
+    div[data-testid="stVerticalBlock"]:has(> div > .stHtml > .watchlist_price_label) {
+        & p {
+            font-size: 0.8em;
+            margin-bottom: 0;
+        }
+    }
+
+    div[data-testid="stVerticalBlock"]:has(> div > .stHtml > .watchlist_price_value) {
+        & p {
+            color: #174C4F;
+            font-family: "Open Sans", sans-serif;
+            font-size: 1.2em;
+            margin-bottom: 0;
+        }
+    }
+
+</style>
