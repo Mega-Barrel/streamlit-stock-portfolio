@@ -1,0 +1,11 @@
+google-auth==2.37.0
+google-auth-oauthlib==1.2.1
+gspread==5.12.4
+gspread-dataframe==4.0.0
+gspread-formatting==1.2.0
+gspread-pandas==3.3.0
+numpy==2.0.2
+pandas==2.2.3
+plotly==5.24.1
+st-gsheets-connection==0.1.0
+streamlit==1.41.1
