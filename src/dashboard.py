@@ -8,7 +8,11 @@ from plotly.subplots import make_subplots
 from streamlit_gsheets import GSheetsConnection
 
 # Set page config
-st.set_page_config(layout="wide")
+st.set_page_config(
+    page_title="Stocks Dashboard",
+    page_icon="💹",
+    layout="wide"
+)
 st.html("styles.html")
 
 # Create a connection object.
@@ -30,7 +34,6 @@ def get_data(_gsheets_connection):
         history_dfs[ticker] = d
     return ticker_df, history_dfs
 
-@st.cache_data
 def transform_data(ticker_df, history_dfs):
     """ Function to transform data"""
     ticker_df['last_trade_time'] = pd.to_datetime(
@@ -298,7 +301,7 @@ def plot_sparkline(data):
     )
     return fig_spark
 
-def display_watchlist_card(ticker, symbol_name, last_price, change_pct, open):
+def display_watchlist_card(ticker, symbol_name, last_price, change_pct, open_price):
     with st.container(border=True):
         st.html(f'<span class="watchlist-card"></span>')
         
@@ -330,7 +333,7 @@ def display_watchlist_card(ticker, symbol_name, last_price, change_pct, open):
                 st.markdown(f"₹ {last_price:.2f}")
         with br:
             st.html(f'<span class="watchlist-br"</span>')
-            fig_spark = plot_sparkline(open)
+            fig_spark = plot_sparkline(open_price)
             st.plotly_chart(
                 fig_spark,
                 config=dict(displayModeBar=False),
@@ -339,7 +342,7 @@ def display_watchlist_card(ticker, symbol_name, last_price, change_pct, open):
 
 def display_watchlist(ticker_df):
     n_cols = 4
-    
+
     for row in batched(ticker_df.itertuples(), n_cols):
         cols = st.columns(n_cols)
         for col, ticker in zip(cols, row):
@@ -355,9 +358,10 @@ def display_watchlist(ticker_df):
 
 # Gsheet connection object
 gsheet_connection = create_gsheet_connection()
-ticker_df, history_df = get_data(gsheet_connection)
+ticker_df, history_dfs = get_data(gsheet_connection)
+ticker_df, history_dfs = transform_data(ticker_df, history_dfs)
 
 st.header("Stocks Dashboard")
 display_watchlist(ticker_df=ticker_df)
 st.divider()
-display_symbol_history(ticker_df, history_df)
+display_symbol_history(ticker_df, history_dfs)
